@@ -3,6 +3,7 @@ const mongoose = require('mongoose')
 const morgan = require("morgan")
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
+//https://stackoverflow.com/questions/56733975/express-validator-error-expressvalidator-is-not-a-function 
 const expressValidator = require('express-validator');
 
 
