@@ -1,6 +1,6 @@
 const User = require('../models/User')
 const {errorHandler} = require("../helpers/dbErrorHandler")
-const jwt = require("../models/user"); //generate sign tokens
+const jwt = require("jsonwebtoken"); //generate json web tokens
 const expressJwt = require('express-jwt')//for authorization check
 
 exports.signup = (req,res) => {
@@ -28,14 +28,14 @@ exports.signin = (req,res) => {
         if(err ||!user){
             return res.status(400).json({
                 error:'User with that email does not exist'
-            })
+            });
         }
         //authenticate the user
         // create authnticate method in user model
-        if(!user.authenticate(password)){
+        if(!user.authentication(password)){
             return res.status(401).json({
                 error: 'Email Password combination do not exist.'
-            })
+            });
         }
 
         //generate a signed token with user id and secret
