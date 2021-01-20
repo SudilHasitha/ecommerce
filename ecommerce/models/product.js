@@ -1,9 +1,6 @@
 const mongoose = require('mongoose')
-// hash the pw
-const crypto = require('crypto')
-//generate unique strings
-const { v4: uuidv4 } = require('uuid');
 const { timestamps } = require('console')
+const {ObjectId} = mongoose.Schema
 
 const productSchema = new mongoose.Schema({
     name: {
@@ -22,6 +19,23 @@ const productSchema = new mongoose.Schema({
         trim: true,
         required: true,
         maxlength:32
+    },
+    //working with relationships
+    category:{
+        type: ObjectId,
+        ref: 'Category',
+        require:true
+    },
+    quantity:{
+        type:Number
+    },
+    photo:{
+        data:Buffer,
+        contentType: String
+    },
+    shipping:{
+        required:false,
+        type:Boolean
     }
 }, {timestamps:true});
 
